@@ -1,4 +1,4 @@
-package application;
+package org.ucoz.intelstat.mh.application;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -10,7 +10,6 @@ public class Main extends Application {
 	    
 	    @Override
 	    public void start(Stage primaryStage) {
-	    	
 	    }
 
 }

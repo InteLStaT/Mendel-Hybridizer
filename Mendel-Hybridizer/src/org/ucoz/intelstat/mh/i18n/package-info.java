@@ -5,4 +5,4 @@
  * @author InteLStaT
  *
  */
-package i18n;
+package org.ucoz.intelstat.mh.i18n;
