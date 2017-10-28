@@ -1,0 +1,35 @@
+Feature ideas:
+- program should be able to "hybridize two organisms" and display 
+information about the hybrid's genetic information, as per Gregor Mendel
+	- up to some set (or arbitrary) number of generations
+	- up to some set (or arbitrary) number of allele pairs
+	- show genotypic and phenotypic ratio of the hybrids
+		- show the calculations needed to reach the results
+	- display a Punnett square
+		- for the last generation or for all generations
+		- if it's too big, might not need to display, or display it
+		separately
+- be able to save these results into files
+- should be internationalized
+- nicely formatted mathematics (especially the ratios)
+
+Development/design ideas:
+- should have tabs each capable of displaying hybridisation results
+	- each tab should be broken down into panels
+	└ 1. hybridizer text fields and controls
+	└ 2. possible gametes
+	└ 3. genotypic ratios (probabilities) of hybrids in a table
+	└ 4. phenotypic ratios (probabilites) of hybrids in a table
+	└ 5. Punnett square (not necessary)
+		- might allow to move up and down some of these
+┌ a welcome tab showing instructions
+└ or help tips on hovering above controls or something
+
+191 ┐
+192 └
+193 ┴
+194 ┬
+195 ├
+196 ─
+197 ┼
+218 ┌
