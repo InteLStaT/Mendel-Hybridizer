@@ -7,10 +7,9 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TabContainer.java">
+<BorderPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ucoz.intelstat.mh.application.TabContainer">
    <center>
-      <TabPane id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" />
+      <TabPane id="tabPane" tabClosingPolicy="UNAVAILABLE" />
    </center>
    <top>
       <MenuBar BorderPane.alignment="CENTER">
