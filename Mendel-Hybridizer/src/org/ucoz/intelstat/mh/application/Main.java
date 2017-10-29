@@ -14,6 +14,7 @@ import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+// TODO set program icon because why not
 public class Main extends Application {
 	
 		private static TabPane tabPane;
@@ -60,7 +61,6 @@ public class Main extends Application {
 				tab.setClosable(true);
 				tabPane().getTabs().add(tab);
 				tabPane().getSelectionModel().select(tab);
-				// TODO: make tabs closable
 				// SUGGESTION: ask for save on closing
 			} catch (IOException e) {
 				System.err.println("Was unable to load TabHybridizer.fxml.");
