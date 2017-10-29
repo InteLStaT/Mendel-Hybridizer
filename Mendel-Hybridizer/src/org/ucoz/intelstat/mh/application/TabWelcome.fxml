@@ -24,7 +24,7 @@
         </rowConstraints>
          <children>
             <Text id="header" strokeType="OUTSIDE" strokeWidth="0.0" text="%tab.welcome.header" GridPane.columnSpan="3" />
-            <Hyperlink text="%tab.welcome.linksample" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+            <Hyperlink onAction="#linkOpenSample" text="%tab.welcome.linksample" GridPane.columnSpan="3" GridPane.rowIndex="2" />
             <Label text="%tab.welcome.text1" wrapText="true" GridPane.columnSpan="3" GridPane.rowIndex="1" />
          </children>
          <padding>

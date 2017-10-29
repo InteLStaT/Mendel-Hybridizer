@@ -48,9 +48,13 @@ public class Main extends Application {
 
 	    public static void addNewHybridizerTab() {
 	    	try {
+	    		TabHybridizer th = new TabHybridizer();
+	    		hybridizerLoader.setController(th);
+	    		hybridizerLoader.setRoot(th);
 				Pane pane = hybridizerLoader.load();
 				Tab tab = new Tab(i18n("tab.hybridizer.newtitle"), pane);
 				tabPane().getTabs().add(tab);
+				tabPane().getSelectionModel().select(tab);
 				// TODO: make tabs closable
 				// SUGGESTION: ask for save on closing
 			} catch (IOException e) {
