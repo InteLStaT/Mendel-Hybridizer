@@ -10,26 +10,27 @@ information about the hybrid's genetic information, as per Gregor Mendel
 		- if it's too big, might not need to display, or display it
 		separately
 - be able to save these results into files
-- should be internationalized
+- should be internationalized ✓
 - nicely formatted mathematics (especially the ratios)
 
-Development/design ideas:
+UI design ideas:
 - should have tabs each capable of displaying hybridisation results
 	- each tab should be broken down into panels
-	└ 1. hybridizer text fields and controls
-	└ 2. possible gametes
-	└ 3. genotypic ratios (probabilities) of hybrids in a table
-	└ 4. phenotypic ratios (probabilites) of hybrids in a table
-	└ 5. Punnett square (not necessary)
+	└ 1. name of the hybridisation/experiment/whatever
+	└ 2. hybridizer text fields and controls
+	└ 3. possible gametes
+	└ 4. genotypic ratios (probabilities) of hybrids in a table
+	└ 5. phenotypic ratios (probabilites) of hybrids in a table
+	└ 6. Punnett square (not necessary)
 		- might allow to move up and down some of these
-┌ a welcome tab showing instructions
+┌ a welcome tab showing instructions ✓
 └ or help tips on hovering above controls or something
 
-191 ┐
+Development ideas:
+- class Genotype
+	- holds genotype information, like "AABbcc"
+		- each allele is held separately
+	- can give the phenotype based on itself, like "ABc"
+
 192 └
-193 ┴
-194 ┬
-195 ├
-196 ─
-197 ┼
 218 ┌
