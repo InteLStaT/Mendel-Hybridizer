@@ -1,6 +1,6 @@
 package org.ucoz.intelstat.mh.genetics;
 
-public final class AllelePair {
+public final class AllelePair implements Comparable<AllelePair> {
 
 	private Allele allele1;
 	private Allele allele2;
@@ -61,6 +61,15 @@ public final class AllelePair {
 		return expressedAllele().description();
 	}
 
+	public String letterRepresentation() {
+		char letter1 = allele1.letterRepresentation();
+		char letter2 = allele2.letterRepresentation();
+		if (letter2 < letter1) {
+			return "" + letter2 + letter1;
+		}
+		return "" + letter1 + letter2;
+	}
+
 	/**
 	 * Returns a heterozygous allele pair with one of two alleles being the
 	 * given one.
@@ -101,5 +110,34 @@ public final class AllelePair {
 	 */
 	public boolean isAllelePairOfSameGeneAs(AllelePair other) {
 		return this.allele1.isAlleleOfSameGeneAs(other.allele1);
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (other instanceof AllelePair) {
+			AllelePair otherAllelePair = (AllelePair) other;
+			if (this.isHeterozygous() && otherAllelePair.isHeterozygous()) {
+				return true;
+			}
+			if (this.allele1.letterRepresentation() == otherAllelePair.allele1.letterRepresentation()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean equals(AllelePair other) {
+		if (this.isHeterozygous() && other.isHeterozygous()) {
+			return true;
+		}
+		if (this.allele1.letterRepresentation() == other.allele1.letterRepresentation()) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public int compareTo(AllelePair other) {
+		return this.allele1.compareTo(other.allele1);
 	}
 }
