@@ -9,7 +9,7 @@ public final class AllelePair {
 		if (a1 == null || a2 == null) {
 			throw new IllegalArgumentException("null allele not allowed");
 		}
-		if (!a1.isAllelePairOf(a2)) {
+		if (!a1.isAlleleOfSameGeneAs(a2)) {
 			throw new IllegalArgumentException("not alleles of the same gene");
 		}
 		allele1 = a1;
@@ -46,7 +46,8 @@ public final class AllelePair {
 	}
 
 	/**
-	 * Sets the allele descriptor of both alleles of this allele pair to the given one.
+	 * Sets the allele descriptor of both alleles of this allele pair to the
+	 * given one.
 	 */
 	public void descriptor(AlleleDescriptor ad) {
 		allele1.descriptor(ad);
@@ -83,5 +84,15 @@ public final class AllelePair {
 	public static AllelePair homozygote(char a) {
 		Allele allele = new Allele(a);
 		return new AllelePair(allele, allele);
+	}
+
+	/**
+	 * Returns true if this allele pair contains the alleles of the same gene as
+	 * in the other allele pair.
+	 * 
+	 * @return
+	 */
+	public boolean isAllelePairOfSameGeneAs(AllelePair other) {
+		return this.allele1.isAlleleOfSameGeneAs(other.allele1);
 	}
 }
