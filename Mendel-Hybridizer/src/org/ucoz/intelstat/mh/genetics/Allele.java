@@ -27,8 +27,14 @@ public final class Allele {
 		return new Allele(opposite, descriptor);
 	}
 	
-	public boolean isAllelePairOf(Allele other) {
-		return this.equals(other.oppositeAllele());
+	public boolean isAlleleOfSameGeneAs(Allele other) {
+		char opposite;
+		if (65 <= letter && letter <= 90) {
+			opposite = (char) (letter + 32);
+		} else {
+			opposite = (char) (letter - 32);
+		}
+		return this.letter == other.letter || opposite == other.letter;
 	}
 	
 	public boolean isDominant() {
@@ -61,6 +67,13 @@ public final class Allele {
 			if(this.letter == otherAllele.letter) {
 				return true;
 			}
+		}
+		return false;
+	}
+
+	public boolean equals(Allele other) {
+		if(this.letter == other.letter) {
+			return true;
 		}
 		return false;
 	}
