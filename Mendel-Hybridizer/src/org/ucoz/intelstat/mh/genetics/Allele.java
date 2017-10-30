@@ -60,6 +60,15 @@ public final class Allele {
 		this.descriptor = descriptor;
 	}
 	
+	public char representingLetter() {
+		return letter;
+	}
+	
+	@Override
+	public String toString() {
+		return String.valueOf(representingLetter());
+	}
+	
 	@Override
 	public boolean equals(Object other) {
 		if(other instanceof Allele) {
