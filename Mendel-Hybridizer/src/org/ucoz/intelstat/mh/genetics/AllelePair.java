@@ -55,6 +55,13 @@ public final class AllelePair {
 	}
 
 	/**
+	 * Returns the description of the expressed allele, that is, the phenotype.
+	 */
+	public String description() {
+		return expressedAllele().description();
+	}
+
+	/**
 	 * Returns a heterozygous allele pair with one of two alleles being the
 	 * given one.
 	 * 
