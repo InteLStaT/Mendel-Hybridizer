@@ -16,6 +16,10 @@ public final class AllelePair implements Comparable<AllelePair> {
 		allele2 = a2;
 	}
 
+	public AllelePair(char a1, char a2) {
+		this(new Allele(a1), new Allele(a2));
+	}
+	
 	public boolean isHomozygous() {
 		return allele1.equals(allele2);
 	}
@@ -114,20 +118,21 @@ public final class AllelePair implements Comparable<AllelePair> {
 
 	@Override
 	public boolean equals(Object other) {
+		if (other == null) {
+			return false;
+		}
 		if (other instanceof AllelePair) {
 			AllelePair otherAllelePair = (AllelePair) other;
-			if (this.isHeterozygous() && otherAllelePair.isHeterozygous()) {
-				return true;
-			}
-			if (this.allele1.letterRepresentation() == otherAllelePair.allele1.letterRepresentation()) {
-				return true;
-			}
+			return this.equals(otherAllelePair);
 		}
 		return false;
 	}
 
 	public boolean equals(AllelePair other) {
-		if (this.isHeterozygous() && other.isHeterozygous()) {
+		if (other == null) {
+			return false;
+		}
+		if (this.isHeterozygous() && other.isHeterozygous() && this.expressedAllele().equals(other.expressedAllele())) {
 			return true;
 		}
 		if (this.allele1.letterRepresentation() == other.allele1.letterRepresentation()) {
@@ -138,6 +143,10 @@ public final class AllelePair implements Comparable<AllelePair> {
 
 	@Override
 	public int compareTo(AllelePair other) {
-		return this.allele1.compareTo(other.allele1);
+		if (this.isAllelePairOfSameGeneAs(other)) {
+			return 0;
+		} else {
+			return this.allele1.compareTo(other.allele1);
+		}
 	}
 }
