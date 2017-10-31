@@ -1,7 +1,6 @@
 package org.ucoz.intelstat.mh.genetics;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -17,29 +16,45 @@ public class Genotype {
 	 * @param pairarray
 	 */
 	public Genotype(AllelePair[] pairarray) {
+		if (pairarray == null) {
+			throw new IllegalArgumentException("array can't be null");
+		}
+		if (pairarray.length == 0) {
+			throw new IllegalArgumentException("array can't be empty");
+		}
 		pairs = new TreeSet<AllelePair>();
 		Collections.addAll(pairs, pairarray);
 	}
 
 	public Genotype(Set<AllelePair> pairset) {
+		if (pairset == null) {
+			throw new IllegalArgumentException("set can't be null");
+		}
+		if (pairset.size() == 0) {
+			throw new IllegalArgumentException("set can't be empty");
+		}
 		pairs = new TreeSet<AllelePair>(pairset);
 	}
 
 	public String letterRepresentation() {
 		StringBuilder builder = new StringBuilder();
-		Iterator<AllelePair> it = pairs.iterator();
-		while (it.hasNext()) {
-			builder.append(it.next().letterRepresentation());
+		for (AllelePair ap : pairs) {
+			builder.append(ap.letterRepresentation());
 		}
 		return builder.toString();
 	}
 
+	@Override
+	public String toString() {
+		return letterRepresentation();
+	}
+
 	public void descriptor(AlleleDescriptor ad) {
-		for(AllelePair ap : pairs) {
+		for (AllelePair ap : pairs) {
 			ap.descriptor(ad);
 		}
 	}
-	
+
 	/**
 	 * Returns an immutable set of the allele pairs in this genotype.
 	 * 
@@ -49,8 +64,12 @@ public class Genotype {
 		return Collections.unmodifiableSet(pairs);
 	}
 
-	// public Phenotype phenotype() {
-	//
-	// }
+	public Phenotype phenotype() {
+		Set<Allele> domAlleles = new TreeSet<>();
+		for(AllelePair ap : pairs) {
+			domAlleles.add(ap.expressedAllele());
+		}
+		return new Phenotype(domAlleles);
+	}
 
 }
