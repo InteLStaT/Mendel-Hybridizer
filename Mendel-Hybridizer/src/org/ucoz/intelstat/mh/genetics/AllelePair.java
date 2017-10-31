@@ -87,7 +87,7 @@ public final class AllelePair implements Comparable<AllelePair> {
 
 	public static AllelePair heterozygote(char a) {
 		Allele allele = new Allele(a);
-		return new AllelePair(allele, allele.oppositeAllele());
+		return heterozygote(a);
 	}
 
 	/**
@@ -103,7 +103,7 @@ public final class AllelePair implements Comparable<AllelePair> {
 
 	public static AllelePair homozygote(char a) {
 		Allele allele = new Allele(a);
-		return new AllelePair(allele, allele);
+		return homozygote(a);
 	}
 
 	/**
