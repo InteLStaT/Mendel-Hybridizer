@@ -74,6 +74,11 @@ public final class AllelePair implements Comparable<AllelePair> {
 		return "" + letter1 + letter2;
 	}
 
+	@Override
+	public String toString() {
+		return letterRepresentation();
+	}
+	
 	/**
 	 * Returns a heterozygous allele pair with one of two alleles being the
 	 * given one.
