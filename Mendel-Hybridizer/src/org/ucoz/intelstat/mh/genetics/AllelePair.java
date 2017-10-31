@@ -19,7 +19,7 @@ public final class AllelePair implements Comparable<AllelePair> {
 	public AllelePair(char a1, char a2) {
 		this(new Allele(a1), new Allele(a2));
 	}
-	
+
 	public boolean isHomozygous() {
 		return allele1.equals(allele2);
 	}
@@ -78,7 +78,7 @@ public final class AllelePair implements Comparable<AllelePair> {
 	public String toString() {
 		return letterRepresentation();
 	}
-	
+
 	/**
 	 * Returns a heterozygous allele pair with one of two alleles being the
 	 * given one.
@@ -151,7 +151,8 @@ public final class AllelePair implements Comparable<AllelePair> {
 		if (this.isAllelePairOfSameGeneAs(other)) {
 			return 0;
 		} else {
-			return this.allele1.compareTo(other.allele1);
+			return Character.compare(Character.toLowerCase(this.allele1.letterRepresentation()),
+					Character.toLowerCase(other.allele1.letterRepresentation()));
 		}
 	}
 }
