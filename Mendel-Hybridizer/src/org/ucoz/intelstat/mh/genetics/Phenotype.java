@@ -66,4 +66,31 @@ public class Phenotype {
 	public Set<Allele> alleles(){
 		return Collections.unmodifiableSet(alleles);
 	}
+
+	public int alleleCount() {
+		return alleles.size();
+	}
+	
+	public boolean equals(Phenotype other) {
+		if(other == null) {
+			return false;
+		}
+		if(this.alleleCount() != other.alleleCount()) {
+			return false;
+		}
+		Iterator<Allele> it1 = this.alleles.iterator();
+		Iterator<Allele> it2 = other.alleles.iterator();
+		while(it1.hasNext()) {
+			if(!it1.next().equals(it2.next())) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		Phenotype pt = (Phenotype) other;
+		return this.equals(pt);
+	}
 }

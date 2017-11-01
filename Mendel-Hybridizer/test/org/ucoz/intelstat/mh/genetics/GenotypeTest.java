@@ -9,13 +9,6 @@ import org.junit.Test;
 
 import junit.framework.TestCase;
 
-/**
- * To run the test case, change the access modifier of pairs to anything
- * non-private.
- * 
- * @author InteLStaT
- *
- */
 public class GenotypeTest extends TestCase {
 
 	@Override
@@ -36,10 +29,7 @@ public class GenotypeTest extends TestCase {
 		pairs.add(new AllelePair('b', 'B'));
 		pairs.add(new AllelePair('B', 'B'));
 		pairs.add(new AllelePair('a', 'a'));
-		pairs.stream().forEach(System.out::println);
-		System.out.println();
 		Genotype gt = new Genotype(pairs);
-		gt.pairs.stream().forEach(System.out::println);
 	}
 
 	@Test
@@ -47,5 +37,23 @@ public class GenotypeTest extends TestCase {
 		Set<AllelePair> pairs = new TreeSet<>(
 				Arrays.asList(new AllelePair('A', 'A'), new AllelePair('B', 'b'), new AllelePair('c', 'c')));
 		assertEquals("AABbcc", new Genotype(pairs).letterRepresentation());
+	}
+
+	@Test
+	public void testPhenotype() {
+		Set<AllelePair> pairs = new TreeSet<>(
+				Arrays.asList(new AllelePair('A', 'A'), new AllelePair('Z', 'z'), new AllelePair('Z', 'Z')));
+		Genotype gt = new Genotype(pairs);
+		Phenotype pt = gt.phenotype();
+		assertEquals("AZ", pt.letterRepresentation());
+	}
+	
+	@Test
+	public void testEquals() {
+		Set<AllelePair> pairs = new TreeSet<>(
+				Arrays.asList(new AllelePair('Z', 'z'), new AllelePair('A', 'A'), new AllelePair('Z', 'Z')));
+		Genotype gt1 = new Genotype(pairs);
+		Genotype gt2 = new Genotype(pairs);
+		assertEquals(gt1, gt2);
 	}
 }

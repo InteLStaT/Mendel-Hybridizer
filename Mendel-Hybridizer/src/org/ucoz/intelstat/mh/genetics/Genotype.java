@@ -1,6 +1,7 @@
 package org.ucoz.intelstat.mh.genetics;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -71,5 +72,31 @@ public class Genotype {
 		}
 		return new Phenotype(domAlleles);
 	}
+	
+	public int pairCount() {
+		return pairs.size();
+	}
+	
+	public boolean equals(Genotype other) {
+		if(other == null) {
+			return false;
+		}
+		if(this.pairCount() != other.pairCount()) {
+			return false;
+		}
+		Iterator<AllelePair> it1 = this.pairs.iterator();
+		Iterator<AllelePair> it2 = other.pairs.iterator();
+		while(it1.hasNext()) {
+			if(!it1.next().equals(it2.next())) {
+				return false;
+			}
+		}
+		return true;
+	}
 
+	@Override
+	public boolean equals(Object other) {
+		Genotype gt = (Genotype) other;
+		return equals(gt);
+	}
 }

@@ -123,14 +123,8 @@ public final class AllelePair implements Comparable<AllelePair> {
 
 	@Override
 	public boolean equals(Object other) {
-		if (other == null) {
-			return false;
-		}
-		if (other instanceof AllelePair) {
-			AllelePair otherAllelePair = (AllelePair) other;
-			return this.equals(otherAllelePair);
-		}
-		return false;
+		AllelePair otherAllelePair = (AllelePair) other;
+		return this.equals(otherAllelePair);
 	}
 
 	public boolean equals(AllelePair other) {

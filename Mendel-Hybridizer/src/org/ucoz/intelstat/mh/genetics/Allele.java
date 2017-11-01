@@ -71,16 +71,14 @@ public final class Allele implements Comparable<Allele> {
 
 	@Override
 	public boolean equals(Object other) {
-		if (other instanceof Allele) {
-			Allele otherAllele = (Allele) other;
-			if (this.letter == otherAllele.letter) {
-				return true;
-			}
-		}
-		return false;
+		Allele otherAllele = (Allele) other;
+		return this.equals(otherAllele);
 	}
 
 	public boolean equals(Allele other) {
+		if(other == null) {
+			return false;
+		}
 		if (this.letter == other.letter) {
 			return true;
 		}
