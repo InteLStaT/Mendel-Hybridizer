@@ -35,6 +35,11 @@ public class Gamete implements Comparable<Gamete> {
 		return pt;
 	}
 	
+	@Override
+	public String toString() {
+		return pt.toString();
+	}
+	
 	public boolean equals(Gamete other) {
 		if(other == null) {
 			return false;
