@@ -87,7 +87,10 @@ public final class Allele implements Comparable<Allele> {
 
 	@Override
 	public int compareTo(Allele other) {
-		return Character.compare(this.letter, other.letter);
+		if(this.isAlleleOfSameGeneAs(other)) {
+			return Character.compare(this.letter, other.letter);
+		}
+		return Character.compare(Character.toUpperCase(this.letter), Character.toUpperCase(other.letter));
 	}
 
 }
