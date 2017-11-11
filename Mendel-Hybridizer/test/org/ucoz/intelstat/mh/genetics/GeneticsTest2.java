@@ -1,7 +1,8 @@
 package org.ucoz.intelstat.mh.genetics;
 
 import java.text.ParseException;
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GeneticsTest2 {
 
@@ -26,9 +27,9 @@ public class GeneticsTest2 {
 			AllelePair pair2 = new AllelePair('A', 'a');
 			Genotype gt1 = new Genotype(new AllelePair[] {pair1});
 			Genotype gt2 = new Genotype(new AllelePair[] {pair2});
-			HashMap<Genotype, String> map = new HashMap<>();
-			map.put(gt1, "asd");
-			map.put(gt2, "lol");
+			Set<Genotype> map = new HashSet<>();
+			map.add(gt1);
+			map.add(gt2);
 			System.out.println(map);
 			System.out.println(gt1.equals(gt2));
 			System.out.println(gt1.hashCode() + ", " + gt2.hashCode());

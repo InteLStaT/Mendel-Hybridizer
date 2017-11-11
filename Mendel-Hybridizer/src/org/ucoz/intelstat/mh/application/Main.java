@@ -2,7 +2,8 @@ package org.ucoz.intelstat.mh.application;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+
+import org.ucoz.intelstat.mh.i18n.I18N;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 // TODO set program icon because why not
@@ -19,7 +19,7 @@ public class Main extends Application {
 	
 		private static TabPane tabPane;
 		private static FXMLLoader hybridizerLoader;
-		private static ResourceBundle bundle;
+		
 	
 	 	public static void main(String[] args) {
 	        launch(args);
@@ -27,25 +27,26 @@ public class Main extends Application {
 	    
 	    @Override
 	    public void start(Stage primaryStage) throws IOException {
-	    	// loads i18n and main UI (TabContainer, TabWelcome)
-	    	bundle = ResourceBundle.getBundle("org/ucoz/intelstat/mh/i18n/i18n");
+	    	// loads main UI (TabContainer, TabWelcome)
+	    	I18N.load();
 	    	
 	    	FXMLLoader tabContainerLoader = new FXMLLoader(resource("TabContainer.fxml"));
 	    	FXMLLoader tabWelcomeLoader = new FXMLLoader(resource("TabWelcome.fxml"));
 	    	hybridizerLoader = new FXMLLoader(resource("TabHybridizer.fxml"));
 	    	
-	    	tabContainerLoader.setResources(bundle);
-	    	tabWelcomeLoader.setResources(bundle);
-	    	hybridizerLoader.setResources(bundle);
+	    	I18N.apply(tabContainerLoader);
+	    	I18N.apply(tabWelcomeLoader);
+	    	I18N.apply(hybridizerLoader);
 	    	
 	    	Parent tabContainer = tabContainerLoader.load();
 	    	Parent tabWelcome = tabWelcomeLoader.load();
 	    	
-	    	(tabPane = (TabPane)tabContainer.lookup("#tabPane")).getTabs().add(new Tab("Welcome", tabWelcome));
+	    	(tabPane = (TabPane)tabContainer.lookup("#tabPane")).getTabs().add(0, new Tab("Welcome", tabWelcome));
 	    	tabPane.getTabs().get(0).setClosable(false); // Welcome Tab
+	    	tabPane.getSelectionModel().select(0); 
 	    	tabPane.setTabClosingPolicy(TabClosingPolicy.ALL_TABS);
 	    	
-	    	Scene scene = new Scene(tabContainer, 900, 700);
+	    	Scene scene = new Scene(tabContainer, 500, 350);
 	    	scene.getStylesheets().add(resource("style.css").toExternalForm());
 	    	primaryStage.setScene(scene);
 	    	primaryStage.show();
@@ -56,14 +57,16 @@ public class Main extends Application {
 	    		TabHybridizer th = new TabHybridizer();
 	    		hybridizerLoader.setController(th);
 	    		hybridizerLoader.setRoot(th);
-				Pane pane = hybridizerLoader.load();
-				Tab tab = new Tab(i18n("tab.hybridizer.newtitle"), pane);
+				Parent pane = hybridizerLoader.load();
+				Tab tab = new Tab(I18N.get("tab.hybridizer.newtitle"), pane);
+				th.tab = tab;
 				tab.setClosable(true);
-				tabPane().getTabs().add(tab);
+				tabPane().getTabs().add(tabPane().getTabs().size()-1, tab);
 				tabPane().getSelectionModel().select(tab);
 				// SUGGESTION: ask for save on closing
 			} catch (IOException e) {
 				System.err.println("Was unable to load TabHybridizer.fxml.");
+				e.printStackTrace();
 			}
 	    }
 	    
@@ -72,10 +75,6 @@ public class Main extends Application {
 	    }
 	    
 	    public static URL resource(String path) {
-	    	return Main.class.getResource(path);
-	    }
-	    
-	    public static String i18n(String key) {
-	    	return bundle.getString(key);
-	    }
+		return Main.class.getResource(path);
+	}
 }
