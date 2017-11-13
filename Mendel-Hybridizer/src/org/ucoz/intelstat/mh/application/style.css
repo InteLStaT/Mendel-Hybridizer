@@ -28,6 +28,9 @@ VBox HBox {
 GridPane {
 	-fx-hgap: 2px;
 }
+.table-column-right-align {
+	-fx-alignment: center-right ;
+}
 /***************************
  *      Hybridizer pane    *
  ***************************/

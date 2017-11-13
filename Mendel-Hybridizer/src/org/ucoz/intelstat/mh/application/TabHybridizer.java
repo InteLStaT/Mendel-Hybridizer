@@ -68,6 +68,7 @@ public class TabHybridizer extends StackPane {
 
 		Organism o1 = new Organism(g1);
 		Organism o2 = new Organism(g2);
+
 		populateGameteLists(o1, o2);
 		panePossibleGametes.setVisible(true);
 		btnNextGeneration.setVisible(true);
@@ -76,19 +77,20 @@ public class TabHybridizer extends StackPane {
 		computeNextGeneration();
 	}
 
+	public void actionComputeNextGeneration() {
+		computeNextGeneration();
+	}
+
 	private void resolveParents(String p1, String p2) {
 		try {
-			Genotype g1 = Genetics.parseGenotype(p1);
-			Genotype g2 = Genetics.parseGenotype(p2);
+			g1 = Genetics.parseGenotype(p1);
+			g2 = Genetics.parseGenotype(p2);
 			if (!g1.phenotype().containsAllelesOfSameGeneAs(g2.phenotype())) {
 				throw new IllegalArgumentException("not equivalent genotypes");
 			}
-			System.out.println(g1);
-			System.out.println(g2);
 			btnHybridize.setDisable(false);
 		} catch (IllegalArgumentException | ParseException e) {
 			btnHybridize.setDisable(true);
-			System.out.println(e.getMessage());
 		}
 	}
 
@@ -102,10 +104,15 @@ public class TabHybridizer extends StackPane {
 	}
 
 	private void computeNextGeneration() {
-		last = last.nextGeneration();
-		TitledPane gtp = createGenotypePane(last.genotypicRatios());
-		TitledPane ptp = createPhenotypePane(last.phenotypicRatios());
-		addGenerationNodes(gtp, ptp);
+		try {
+			last = last.nextGeneration();
+			TitledPane gtp = createGenotypePane(last.genotypicRatios());
+			TitledPane ptp = createPhenotypePane(last.phenotypicRatios());
+			addGenerationNodes(gtp, ptp);
+		} catch (IOException e) {
+			System.err.println("Error loading fxml:");
+			e.printStackTrace();
+		}
 	}
 
 	private void addGenerationNodes(TitledPane genotypePane, TitledPane phenotypePane) {
@@ -118,11 +125,12 @@ public class TabHybridizer extends StackPane {
 	private TitledPane createGenotypePane(Map<Genotype, Fraction> ratios) throws IOException {
 		FXMLLoader gtloader = new FXMLLoader(Main.resource("TabHybridizerGenotype.fxml"));
 		I18N.apply(gtloader);
-		TitledPane gtpane = gtloader.load();
-		gtloader.
+		TabHybridizerGenotype controller = new TabHybridizerGenotype(ratios);
+		gtloader.setController(controller);
+		return gtloader.load();
 	}
 
 	private TitledPane createPhenotypePane(Map<Phenotype, Fraction> ratios) throws IOException {
-
+		return new TitledPane();
 	}
 }

@@ -46,7 +46,7 @@ public class Main extends Application {
 	    	tabPane.getSelectionModel().select(0); 
 	    	tabPane.setTabClosingPolicy(TabClosingPolicy.ALL_TABS);
 	    	
-	    	Scene scene = new Scene(tabContainer, 500, 350);
+	    	Scene scene = new Scene(tabContainer, 700, 500);
 	    	scene.getStylesheets().add(resource("style.css").toExternalForm());
 	    	primaryStage.setScene(scene);
 	    	primaryStage.show();
