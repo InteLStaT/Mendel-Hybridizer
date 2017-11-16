@@ -54,13 +54,14 @@ public class Main extends Application {
 
 	    public static void addNewHybridizerTab() {
 	    	try {
-	    		TabHybridizer th = new TabHybridizer();
-	    		hybridizerLoader.setController(th);
-	    		hybridizerLoader.setRoot(th);
+	    		TabHybridizer controller = new TabHybridizer();
+	    		hybridizerLoader.setController(controller);
+	    		hybridizerLoader.setRoot(controller);
 				Parent pane = hybridizerLoader.load();
 				Tab tab = new Tab(I18N.get("tab.hybridizer.newtitle"), pane);
-				th.tab = tab;
+				controller.tab = tab;
 				tab.setClosable(true);
+				tab.setOnClosed((e) -> controller.freeResources());
 				tabPane().getTabs().add(tabPane().getTabs().size()-1, tab);
 				tabPane().getSelectionModel().select(tab);
 				// SUGGESTION: ask for save on closing
