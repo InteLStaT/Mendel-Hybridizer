@@ -18,12 +18,16 @@ import org.ucoz.intelstat.mh.i18n.I18N;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -116,8 +120,19 @@ public class TabHybridizer extends StackPane {
 	}
 
 	private void addGenerationNodes(TitledPane genotypePane, TitledPane phenotypePane) {
-		Separator sep = new Separator(Orientation.HORIZONTAL);
-		vbox.getChildren().add(vbox.getChildren().size() - 1, sep);
+		Separator lsep = new Separator(Orientation.HORIZONTAL);
+		Separator rsep = new Separator(Orientation.HORIZONTAL);
+		Label lblGeneration = new Label(I18N.get("tab.hybridizer.label.generation", "PLACEHOLDER")/*TODO replace with generation descriptor*/);	
+		lblGeneration.getStyleClass().add("label-generation");
+		HBox separator = new HBox();
+		separator.getChildren().add(lsep);
+		separator.getChildren().add(lblGeneration);
+		separator.getChildren().add(rsep);
+		separator.setAlignment(Pos.CENTER);
+		HBox.setHgrow(lsep, Priority.ALWAYS);
+		HBox.setHgrow(rsep, Priority.ALWAYS);
+		
+		vbox.getChildren().add(vbox.getChildren().size() - 1, separator);
 		vbox.getChildren().add(vbox.getChildren().size() - 1, genotypePane);
 		vbox.getChildren().add(vbox.getChildren().size() - 1, phenotypePane);
 	}
@@ -132,5 +147,17 @@ public class TabHybridizer extends StackPane {
 
 	private TitledPane createPhenotypePane(Map<Phenotype, Fraction> ratios) throws IOException {
 		return new TitledPane();
+	}
+
+	public void freeResources() {
+		g1 = g2 = null;
+		last = null;
+		System.out.println("FREE RESOURCES WAS CALLED HURRAY.");
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+		freeResources();
 	}
 }
