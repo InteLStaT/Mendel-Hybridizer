@@ -47,12 +47,25 @@ public class ParentalGeneration implements Generation {
 	@Override
 	public FilialGeneration nextGeneration() {
 		return new FilialGeneration(this) {
+			{
+				ordinal = 1;
+			}
 			@Override
 			public Map<Genotype, Fraction> genotypicRatios() {
 				Map<Genotype, Fraction> ratios = hybridize(parent1.genotype(), parent2.genotype());
 				return ratios;
 			}
 		};
+	}
+
+	@Override
+	public String abbreviation() {
+		return "P";
+	}
+	
+	@Override
+	public String toString() {
+		return abbreviation() + "(" + parent1.genotype() + ", " + parent2.genotype() + ")";
 	}
 
 }

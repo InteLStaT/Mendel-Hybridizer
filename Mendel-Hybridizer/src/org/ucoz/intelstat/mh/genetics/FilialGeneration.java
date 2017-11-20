@@ -11,15 +11,21 @@ import org.apache.commons.math3.fraction.Fraction;
 public class FilialGeneration implements Generation {
 
 	protected Generation prev;
+	protected int ordinal;
 
 	protected FilialGeneration(Generation previous) {
 		prev = previous;
 	}
 
+	public int ordinal() {
+		return ordinal;
+	}
+	
 	@Override
 	public Generation nextGeneration() {
-		// TODO Auto-generated method stub
-		return null;
+		FilialGeneration next = new FilialGeneration(this);
+		next.ordinal = this.ordinal + 1;
+		return next;
 	}
 
 	@Override
@@ -48,6 +54,15 @@ public class FilialGeneration implements Generation {
 		return ratios;
 	}
 
+	/**
+	 * Determines the possible offspring genotypes of the two given parental
+	 * genotypes along with the distribution of the calculated genotypes.
+	 * 
+	 * @param gt1
+	 * @param gt2
+	 * @return
+	 */
+	// TODO: fix this because incorrect calculation.
 	protected static Map<Genotype, Fraction> hybridize(Genotype gt1, Genotype gt2) {
 		Set<Gamete> gam1 = new Organism(gt1).possibleGametes();
 		Set<Gamete> gam2 = new Organism(gt2).possibleGametes();
@@ -63,4 +78,14 @@ public class FilialGeneration implements Generation {
 		return res;
 	}
 
+	@Override
+	public String abbreviation() {
+		return "F" + ordinal;
+	}
+	
+	@Override
+	public String toString() {
+		return abbreviation();
+	}
+	
 }
