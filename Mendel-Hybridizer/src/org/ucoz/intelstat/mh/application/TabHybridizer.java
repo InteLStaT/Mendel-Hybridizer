@@ -14,6 +14,7 @@ import org.ucoz.intelstat.mh.genetics.Organism;
 import org.ucoz.intelstat.mh.genetics.ParentalGeneration;
 import org.ucoz.intelstat.mh.genetics.Phenotype;
 import org.ucoz.intelstat.mh.i18n.I18N;
+import org.ucoz.intelstat.mh.res.Resources;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
@@ -122,7 +123,7 @@ public class TabHybridizer extends StackPane {
 	private void addGenerationNodes(TitledPane genotypePane, TitledPane phenotypePane) {
 		Separator lsep = new Separator(Orientation.HORIZONTAL);
 		Separator rsep = new Separator(Orientation.HORIZONTAL);
-		Label lblGeneration = new Label(I18N.get("tab.hybridizer.label.generation", "PLACEHOLDER")/*TODO replace with generation descriptor*/);	
+		Label lblGeneration = new Label(I18N.get("tab.hybridizer.label.generation", "PLACEHOLDER")/*TODO replace with generation descriptor*/);
 		lblGeneration.getStyleClass().add("label-generation");
 		HBox separator = new HBox();
 		separator.getChildren().add(lsep);
@@ -131,14 +132,14 @@ public class TabHybridizer extends StackPane {
 		separator.setAlignment(Pos.CENTER);
 		HBox.setHgrow(lsep, Priority.ALWAYS);
 		HBox.setHgrow(rsep, Priority.ALWAYS);
-		
+
 		vbox.getChildren().add(vbox.getChildren().size() - 1, separator);
 		vbox.getChildren().add(vbox.getChildren().size() - 1, genotypePane);
 		vbox.getChildren().add(vbox.getChildren().size() - 1, phenotypePane);
 	}
 
 	private TitledPane createGenotypePane(Map<Genotype, Fraction> ratios) throws IOException {
-		FXMLLoader gtloader = new FXMLLoader(Main.resource("TabHybridizerGenotype.fxml"));
+		FXMLLoader gtloader = new FXMLLoader(Resources.get("TabHybridizerGenotype.fxml"));
 		I18N.apply(gtloader);
 		TabHybridizerGenotype controller = new TabHybridizerGenotype(ratios);
 		gtloader.setController(controller);
@@ -154,7 +155,7 @@ public class TabHybridizer extends StackPane {
 		last = null;
 		System.out.println("FREE RESOURCES WAS CALLED HURRAY.");
 	}
-	
+
 	@Override
 	protected void finalize() throws Throwable {
 		super.finalize();
