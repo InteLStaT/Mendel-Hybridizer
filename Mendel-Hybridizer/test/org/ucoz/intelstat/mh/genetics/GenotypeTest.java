@@ -50,10 +50,12 @@ public class GenotypeTest extends TestCase {
 	
 	@Test
 	public void testEquals() {
-		Set<AllelePair> pairs = new TreeSet<>(
+		Set<AllelePair> pairs1 = new TreeSet<>(
 				Arrays.asList(new AllelePair('Z', 'z'), new AllelePair('A', 'A'), new AllelePair('Z', 'Z')));
-		Genotype gt1 = new Genotype(pairs);
-		Genotype gt2 = new Genotype(pairs);
+		Set<AllelePair> pairs2 = new TreeSet<>(
+				Arrays.asList( new AllelePair('A', 'A'), new AllelePair('Z', 'z')));
+		Genotype gt1 = new Genotype(pairs1);
+		Genotype gt2 = new Genotype(pairs2);
 		assertEquals(gt1, gt2);
 	}
 }

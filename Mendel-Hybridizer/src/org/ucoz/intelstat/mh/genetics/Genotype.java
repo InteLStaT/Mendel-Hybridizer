@@ -13,7 +13,7 @@ public class Genotype {
 	 * Constructs a genotype with the given allele pairs. Duplicates are
 	 * removed. {@code AllelePair}s a1 and a2 are considered equal if
 	 * {@code a1.compareTo(a2) == 0}. The array is processed sequentially.
-	 * 
+	 *
 	 * @param pairarray
 	 */
 	public Genotype(AllelePair[] pairarray) {
@@ -58,7 +58,7 @@ public class Genotype {
 
 	/**
 	 * Returns an immutable set of the allele pairs in this genotype.
-	 * 
+	 *
 	 * @return
 	 */
 	public Set<AllelePair> pairs() {
@@ -72,11 +72,11 @@ public class Genotype {
 		}
 		return new Phenotype(domAlleles);
 	}
-	
+
 	public int pairCount() {
 		return pairs.size();
 	}
-	
+
 	public boolean equals(Genotype other) {
 		if(other == null) {
 			return false;
@@ -94,9 +94,36 @@ public class Genotype {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
-	public boolean equals(Object other) {
-		Genotype gt = (Genotype) other;
-		return equals(gt);
+	public int hashCode() {
+		return letterRepresentation().hashCode();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Genotype)) {
+			return false;
+		}
+		Genotype other = (Genotype) obj;
+		if (pairs == null) {
+			if (other.pairs != null) {
+				return false;
+			}
+		} else if (!pairs.equals(other.pairs)) {
+			return false;
+		}
+		return true;
 	}
 }

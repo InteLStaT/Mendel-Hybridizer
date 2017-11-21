@@ -1,0 +1,55 @@
+Text, Label {
+	-fx-font-family: Tahoma;
+}
+#header {
+	-fx-font-size: 20px;
+	-fx-font-weight: normal;
+}
+.add-button {
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+}
+/**************************************
+ * ALL TITLED PANES IN HYBRIDIZER TAB *
+ **************************************/
+TitledPane .title {
+	-fx-background-color: -fx-box-border, -fx-inner-border, aliceblue ; 
+}
+TitledPane {
+	-fx-background: rgb(230,230,230) 
+}
+VBox {
+	-fx-padding: 12px;
+	-fx-spacing: 10px;
+}
+VBox HBox {
+	-fx-spacing: 5px;
+}
+GridPane {
+	-fx-hgap: 2px;
+}
+.table-column-right-align {
+	-fx-alignment: center-right ;
+}
+.label-generation {
+	-fx-font-size: 16px;
+	-fx-font-weight: bold;
+}
+/***************************
+ *      Hybridizer pane    *
+ ***************************/
+
+#hybridizer Button {
+	-fx-padding: 0;
+	-fx-font-size: 35;
+	-fx-background-color: transparent;
+	-fx-translate-y: -2px;
+}
+#hybridizer Button:disabled {
+	-fx-text-fill: rgb(230,77,77);
+	-fx-opacity: 1.0;
+}
+#hybridizer Button:hover {
+	-fx-text-fill: rgb(102,128,230);
+	-fx-opacity: 1.0;
+}
