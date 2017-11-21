@@ -19,12 +19,14 @@ public class TabHybridizerPhenotype {
 	public TableView<Phenotype> tblPhenotype;
 	public TableColumn<Phenotype, String> colPt;
 	public TableColumn<Phenotype, String> colRatios;
+	public TableColumn<Phenotype, String> colDesc;
 
 	public void initialize() {
 		// ratios is null, implement it in FilialGeneration
 		tblPhenotype.setItems(FXCollections.observableList(new ArrayList<>(ratios.keySet())));
 		colPt.setCellValueFactory((p) -> new SimpleStringProperty(p.getValue().letterRepresentation()));
 		colRatios.setCellValueFactory((p) -> new SimpleStringProperty(ratios.get(p.getValue()).toString()));
+		colDesc.setCellValueFactory((p) -> new SimpleStringProperty(p.getValue().description()));
 	}
 
 	public TabHybridizerPhenotype(Map<Phenotype, Fraction> ratios) {

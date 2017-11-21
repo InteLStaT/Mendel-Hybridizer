@@ -9,6 +9,7 @@
       <TableView id="tblphenotype" fx:id="tblPhenotype" prefHeight="200.0" prefWidth="598.0">
         <columns>
           <TableColumn fx:id="colPt" prefWidth="500.0" text="%tab.hybridizer.pane.phenotypicratios.columnlabel.phenotype" />
+            <TableColumn fx:id="colDesc" maxWidth="-1.0" prefWidth="-1.0" text="%tab.hybridizer.pane.phenotypicratios.columnlabel.description" />
           <TableColumn fx:id="colRatios" prefWidth="102.0" styleClass="table-column-right-align" text="%tab.hybridizer.pane.phenotypicratios.columnlabel.ratio" />
         </columns>
       </TableView>
