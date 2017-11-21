@@ -13,7 +13,7 @@ public class Genotype {
 	 * Constructs a genotype with the given allele pairs. Duplicates are
 	 * removed. {@code AllelePair}s a1 and a2 are considered equal if
 	 * {@code a1.compareTo(a2) == 0}. The array is processed sequentially.
-	 * 
+	 *
 	 * @param pairarray
 	 */
 	public Genotype(AllelePair[] pairarray) {
@@ -58,7 +58,7 @@ public class Genotype {
 
 	/**
 	 * Returns an immutable set of the allele pairs in this genotype.
-	 * 
+	 *
 	 * @return
 	 */
 	public Set<AllelePair> pairs() {
@@ -72,11 +72,11 @@ public class Genotype {
 		}
 		return new Phenotype(domAlleles);
 	}
-	
+
 	public int pairCount() {
 		return pairs.size();
 	}
-	
+
 	public boolean equals(Genotype other) {
 		if(other == null) {
 			return false;
@@ -99,10 +99,7 @@ public class Genotype {
 	 */
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((pairs == null) ? 0 : pairs.hashCode());
-		return result;
+		return letterRepresentation().hashCode();
 	}
 
 	/* (non-Javadoc)
