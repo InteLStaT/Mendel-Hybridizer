@@ -4,12 +4,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TitledPane?>
 
-<TitledPane text="%tab.hybridizer.title.genotypicratios" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane maxHeight="300.0" minHeight="100.0" prefHeight="200.0" text="%tab.hybridizer.title.genotypicratios" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-      <TableView id="tblgenotype" fx:id="tblGenotype" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+      <TableView id="tblgenotype" fx:id="tblGenotype">
         <columns>
-          <TableColumn id="colgenotype" fx:id="colGt" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" text="%tab.hybridizer.pane.genotypicratios.columnlabel.genotype" />
-          <TableColumn id="colratio" fx:id="colRatios" maxWidth="-1.0" minWidth="50.0" prefWidth="-1.0" styleClass="table-column-right-align" text="%tab.hybridizer.pane.genotypicratios.columnlabel.ratio" />
+          <TableColumn id="colgenotype" fx:id="colGt" maxWidth="1.7976931348623157E308" minWidth="300.0" prefWidth="500.0" text="%tab.hybridizer.pane.genotypicratios.columnlabel.genotype" />
+          <TableColumn id="colratio" fx:id="colRatios" maxWidth="60.0" minWidth="50.0" prefWidth="50.0" styleClass="table-column-right-align" text="%tab.hybridizer.pane.genotypicratios.columnlabel.ratio" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
