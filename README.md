@@ -1,2 +1,2 @@
 # Mendel-Hybridizer
-Hybridize gametes as Mendel did
+- this name is stupid, let's name it something else
