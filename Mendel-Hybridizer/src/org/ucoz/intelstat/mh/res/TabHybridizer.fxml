@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root type="StackPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="StackPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="518.0" prefWidth="540.0">
          <content>
@@ -52,7 +52,7 @@
                         </GridPane>
                      </content>
                   </TitledPane>
-                  <TitledPane id="panepossiblegametes" fx:id="panePossibleGametes" text="%tab.hybridizer.title.possiblegametes" VBox.vgrow="ALWAYS">
+                  <TitledPane id="panepossiblegametes" fx:id="panePossibleGametes" text="%tab.hybridizer.title.possiblegametes" visible="false" VBox.vgrow="ALWAYS">
                      <content>
                         <GridPane>
                           <columnConstraints>
