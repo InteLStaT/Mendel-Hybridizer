@@ -112,6 +112,11 @@ public class Phenotype implements Comparable<Phenotype> {
 	}
 
 	@Override
+	public int hashCode() {
+		return letterRepresentation().hashCode();
+	}
+	
+	@Override
 	public int compareTo(Phenotype other) {
 		Iterator<Allele> it1 = this.alleles.iterator();
 		Iterator<Allele> it2 = other.alleles.iterator();
