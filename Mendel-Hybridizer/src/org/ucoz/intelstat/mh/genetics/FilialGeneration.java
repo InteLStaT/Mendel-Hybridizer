@@ -12,6 +12,8 @@ public class FilialGeneration implements Generation {
 
 	protected Generation prev;
 	protected int ordinal;
+	protected Map<Genotype, Fraction> gtr;
+	protected Map<Phenotype, Fraction> ptr;
 
 	protected FilialGeneration(Generation previous) {
 		prev = previous;
@@ -20,7 +22,7 @@ public class FilialGeneration implements Generation {
 	public int ordinal() {
 		return ordinal;
 	}
-	
+
 	@Override
 	public Generation nextGeneration() {
 		FilialGeneration next = new FilialGeneration(this);
@@ -30,12 +32,19 @@ public class FilialGeneration implements Generation {
 
 	@Override
 	public Map<Phenotype, Fraction> phenotypicRatios() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<Phenotype, Fraction> ratios = new HashMap<>();
+		for (Entry<Genotype, Fraction> entry : genotypicRatios().entrySet()) {
+			ratios.put(entry.getKey().phenotype(),
+					ratios.getOrDefault(entry.getKey().phenotype(), Fraction.ZERO).add(entry.getValue()));
+		}
+		return ratios;
 	}
 
 	@Override
 	public Map<Genotype, Fraction> genotypicRatios() {
+		if (gtr != null) {
+			return gtr;
+		}
 		Map<Genotype, Fraction> prevgtr = prev.genotypicRatios();
 		ArrayList<Genotype> gts = new ArrayList<>(prevgtr.keySet());
 		Map<Genotype, Fraction> ratios = new HashMap<>();
@@ -51,7 +60,7 @@ public class FilialGeneration implements Generation {
 				}
 			}
 		}
-		return ratios;
+		return gtr = ratios;
 	}
 
 	/**
@@ -82,10 +91,10 @@ public class FilialGeneration implements Generation {
 	public String abbreviation() {
 		return "F" + ordinal;
 	}
-	
+
 	@Override
 	public String toString() {
 		return abbreviation();
 	}
-	
+
 }

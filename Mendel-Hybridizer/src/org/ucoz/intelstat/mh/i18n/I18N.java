@@ -33,7 +33,6 @@ public class I18N {
 			for (int i = 0; sc.hasNext(); i++) {
 				locales[i] = Locale.forLanguageTag(sc.next());
 			}
-			System.out.println(Arrays.toString(locales));
 		} catch (IOException e) {
 			System.err.println("Failed to obtain availables locales, reason:");
 			e.printStackTrace();

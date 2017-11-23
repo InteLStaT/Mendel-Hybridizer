@@ -123,7 +123,7 @@ public class TabHybridizer extends StackPane {
 	private void addGenerationNodes(TitledPane genotypePane, TitledPane phenotypePane) {
 		Separator lsep = new Separator(Orientation.HORIZONTAL);
 		Separator rsep = new Separator(Orientation.HORIZONTAL);
-		Label lblGeneration = new Label(I18N.get("tab.hybridizer.label.generation", "PLACEHOLDER")/*TODO replace with generation descriptor*/);
+		Label lblGeneration = new Label(I18N.get("tab.hybridizer.label.generation", last.abbreviation())/*TODO replace with generation descriptor*/);
 		lblGeneration.getStyleClass().add("label-generation");
 		HBox separator = new HBox();
 		separator.getChildren().add(lsep);
@@ -147,7 +147,11 @@ public class TabHybridizer extends StackPane {
 	}
 
 	private TitledPane createPhenotypePane(Map<Phenotype, Fraction> ratios) throws IOException {
-		return new TitledPane();
+		FXMLLoader ptloader = new FXMLLoader(Resources.get("TabHybridizerPhenotype.fxml"));
+		I18N.apply(ptloader);
+		TabHybridizerPhenotype controller = new TabHybridizerPhenotype(ratios);
+		ptloader.setController(controller);
+		return ptloader.load();
 	}
 
 	public void freeResources() {
