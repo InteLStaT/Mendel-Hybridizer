@@ -50,6 +50,8 @@ public class Main extends Application {
 
 		Scene scene = new Scene(tabContainer, 700, 500);
 		scene.getStylesheets().add(Resources.get("style.css").toExternalForm());
+		primaryStage.setMinWidth(450);
+		primaryStage.setMinHeight(400);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
