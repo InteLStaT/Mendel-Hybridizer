@@ -48,12 +48,6 @@ public class AlleleTest extends TestCase {
 		} catch (IllegalArgumentException e) {
 
 		}
-		try {
-			new Allele('ő');
-			fail("Didn't throw when it should have on Unicode");
-		} catch (IllegalArgumentException e) {
-
-		}
 	}
 
 	@Test

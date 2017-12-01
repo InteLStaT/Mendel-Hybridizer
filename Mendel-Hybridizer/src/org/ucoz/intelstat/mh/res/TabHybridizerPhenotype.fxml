@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TitledPane?>
 
-<TitledPane animated="false" text="%tab.hybridizer.title.phenotypicratios" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane text="%tab.hybridizer.title.phenotypicratios" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <TableView id="tblphenotype" fx:id="tblPhenotype" maxHeight="300.0" minHeight="100.0" prefHeight="200.0">
         <columns>
